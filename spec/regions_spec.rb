@@ -13,21 +13,9 @@ describe APIv1::Regions do
   }
 
   describe "get regions" do
-    it "should deny access to regions at all if not from the right host" do
-      get "/regions"
-      last_response.status.should == 403
-
-      post "/regions", test_params
-      last_response.status.should == 403
-    end
-
-    it "should get be able to get regions when host is allowed" do
-      get "/regions"
-      last_response.status.should == 200
-    end
-
     it "should get an empty array when there are no regions" do
       get "/regions"
+      last_response.status.should == 200
       last_response.body.should == "[]"
       JSON.parse(last_response.body).count.should == 0
     end
@@ -41,7 +29,7 @@ describe APIv1::Regions do
 
     it "should say hello" do
       get "/regions/hello"
-      last_response.status.should == 200
+      p last_response.body
       JSON.parse(last_response.body).keys.first.should   == "hello"
       JSON.parse(last_response.body).values.first.should == "world"
     end

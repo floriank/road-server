@@ -22,6 +22,7 @@ module API
     end
 
     mount APIv1::Regions
+
     add_swagger_documentation
 
   end
