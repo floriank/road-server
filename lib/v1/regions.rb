@@ -10,6 +10,11 @@ module APIv1
         {hello: "world"}
       end
 
+      desc "lists the available methods for the resource regions"
+      options "/" do
+        {allowed: ["GET", "OPTIONS", "PUT", "PATCH", "DELETE", "POST"]}
+      end
+
       params do
         requires :region_id, :type => Integer, :desc => "A numeric user id"
       end
@@ -27,6 +32,10 @@ module APIv1
 
         desc "replaces a region"
         put "/" do
+        end
+
+        desc "deletes a region"
+        delete "/" do
 
         end
       end
