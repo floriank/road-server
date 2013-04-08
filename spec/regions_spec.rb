@@ -29,7 +29,6 @@ describe APIv1::Regions do
 
     it "should say hello" do
       get "/regions/hello"
-      p last_response.body
       JSON.parse(last_response.body).keys.first.should   == "hello"
       JSON.parse(last_response.body).values.first.should == "world"
     end
