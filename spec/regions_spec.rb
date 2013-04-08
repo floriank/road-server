@@ -12,25 +12,48 @@ describe APIv1::Regions do
     :lng  => 12,
   }
 
-  describe "get regions" do
-    it "should get an empty array when there are no regions" do
-      get "/regions"
-      last_response.status.should == 200
-      last_response.body.should == "[]"
-      JSON.parse(last_response.body).count.should == 0
+  it "should get an empty array when there are no regions" do
+    get "/regions"
+    last_response.status.should == 200
+    last_response.body.should == "[]"
+    JSON.parse(last_response.body).count.should == 0
+  end
+
+  it "should create a region when being POSTed to" do
+    post "/regions", test_params
+    last_response.status.should == 204
+    json = JSON.parse last_response.body
+    json.length.should == 1
+  end
+
+  describe "operations" do
+    before(:each) do
+      # initialize a fake Repo in the background
     end
 
-    it "should create a region when being posted to" do
-      post "/regions", test_params
-      last_response.status.should == 204
-      json = JSON.parse last_response.body
-      json.length.should == 1
+    it "should replace a region completely with a PUT request" do
+
     end
 
-    it "should say hello" do
-      get "/regions/hello"
-      JSON.parse(last_response.body).keys.first.should   == "hello"
-      JSON.parse(last_response.body).values.first.should == "world"
+    it "should update a region completely with a PATCH request" do
+
     end
+
+    it "should return a 404 if a region could not be found" do
+      get "/regions/212323"
+      last_response.status.should == 404
+    end
+
+    it "should remove a region with a delete request" do
+
+    end
+  end
+
+  it "should say hello" do
+    get "/regions/hello"
+
+    p last_response.body
+    JSON.parse(last_response.body).keys.first.should   == "hello"
+    JSON.parse(last_response.body).values.first.should == "world"
   end
 end

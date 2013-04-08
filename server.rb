@@ -23,7 +23,7 @@ module API
 
     mount APIv1::Regions
 
-    add_swagger_documentation
+    add_swagger_documentation :api_version => "0.0.1", :mount_path  => "api_docs"
 
   end
 end

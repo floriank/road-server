@@ -3,7 +3,6 @@ module APIv1
     namespace :regions do
       desc "gets all the regions"
       get "/" do
-        []
       end
 
       desc "says hello"
@@ -16,21 +15,19 @@ module APIv1
       end
 
       namespace ":region_id" do
-        desc "gets a speicific region, based on the id given"
-        get "/:region_id" do
-          Region.find_by_id id
+        desc "gets a specific region, based on the id given"
+        get "/" do
+
         end
 
         desc "updates a region"
-        patch "/:region_id" do
-          region = Region.find_by_id id
-          region.update_attributes params
+        patch "/" do
+
         end
 
         desc "replaces a region"
-        put "/:region_id" do
-          region = Region.find_by_id id
-          region.update_attributes params
+        put "/" do
+
         end
       end
     end
