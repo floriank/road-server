@@ -39,7 +39,6 @@ describe APIv1::Regions do
 
     it "should return a 404 if a region could not be found" do
       get "/regions/212323"
-      p last_response.status
       last_response.status.should == 404
     end
 
