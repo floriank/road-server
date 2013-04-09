@@ -3,7 +3,7 @@ describe APIv1::Regions do
   include Rack::Test::Methods
 
   def app
-    API::Road
+    APIv1::Regions
   end
 
   test_params = {
@@ -22,8 +22,6 @@ describe APIv1::Regions do
   it "should create a region when being POSTed to" do
     post "/regions", test_params
     last_response.status.should == 204
-    json = JSON.parse last_response.body
-    json.length.should == 1
   end
 
   describe "operations" do
@@ -41,6 +39,7 @@ describe APIv1::Regions do
 
     it "should return a 404 if a region could not be found" do
       get "/regions/212323"
+      p last_response.status
       last_response.status.should == 404
     end
 
@@ -51,8 +50,6 @@ describe APIv1::Regions do
 
   it "should say hello" do
     get "/regions/hello"
-
-    p last_response.body
     JSON.parse(last_response.body).keys.first.should   == "hello"
     JSON.parse(last_response.body).values.first.should == "world"
   end
